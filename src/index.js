@@ -5,8 +5,6 @@ import './index.css';
 import App from './App';
 import Rankings from './Rankings';
 import DfsPortal from './DfsPortal';
-import ReactDataGrid from 'react-data-grid';
-// import ReactDataGridPlugins from 'react-data-grid/addons';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

@@ -4,17 +4,18 @@ import ReactDataGrid from 'react-data-grid';
 
 
 class Rankings extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this._columns = [{
       name: 'Name',
-      key: 'playerName'
-    }, {
-      name: 'Team',
-      key: 'teamName'
+      key: 'playerName',
+      width: 250
     }, {
       name: 'Position',
       key: 'position'
+    }, {
+      name: 'Team',
+      key: 'teamName'
     }, {
       name: 'Bye',
       key: 'bye',
@@ -36,7 +37,7 @@ class Rankings extends Component {
       key: 'adp',
       sortable: true
     }];
-    let getIt = this.fetchRankings();
+    this.fetchRankings();
     let originalRows;
     let rows;
     this.state = { originalRows, rows };
@@ -53,24 +54,7 @@ class Rankings extends Component {
   fetchRankings = () => {
     let dataGetter = response => {
       this.setState({ data: response[0] }, this.makeRows)
-    //   this.setState({ data: response[0] }, function() {
-    //     let rows = [];
-    //     for (let i = 0; i < this.state.data.length; i++) {
-    //       let player = this.state.data[i];
-    //       rows.push({
-    //         playerName: player.playerName,
-    //         teamName: player.teamName,
-    //         bye: player.bye,
-    //         bestRank: player.bestRank,
-    //         worstRank: player.worstRank,
-    //         avgRank: player.avgRank,
-    //         adp: player.adp
-    //       })
-    //   }
-    //   this.setState({ rows })
-    // })
   }
-
     let url = 'https://fantasy-football-api.firebaseapp.com/rankings.json';
     return fetch(url)
            .then(response => response.json())
@@ -102,8 +86,8 @@ class Rankings extends Component {
 
   handleGridSort = (sortColumn, sortDirection) => {
   const comparer = (a, b) => {
-    let intA = parseInt(a[sortColumn]);
-    let intB = parseInt(b[sortColumn]);
+    let intA = Number(a[sortColumn]);
+    let intB = Number(b[sortColumn]);
     if (sortDirection === 'ASC') {
       return (intA > intB) ? 1
                           : (intA < intB)
@@ -144,8 +128,7 @@ class Rankings extends Component {
   }
 
   componentDidMount() {
-    // this.fetchRankings();
-    // this.createRows()
+
   }
 
   render() {
