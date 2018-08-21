@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactDataGrid from 'react-data-grid';
-// import ReactDataGridPlugins from 'react-data-grid/addons';
+import { Toolbar, Data: { Selectors } } from 'react-data-grid/addons';
 
 
 class Rankings extends Component {
@@ -90,8 +90,8 @@ class Rankings extends Component {
     let intB = Number(b[sortColumn]) || 1000;
     if (sortDirection === 'ASC') {
       return (intA > intB) ? 1
-                          : (intA < intB)
-                          ? -1 : 0
+                           : (intA < intB)
+                           ? -1 : 0
     } else if (sortDirection === 'DESC') {
       return (intA < intB) ? 1
                            : (intA > intB)
@@ -109,10 +109,14 @@ class Rankings extends Component {
         <section>
           <ReactDataGrid
             onGridSort={this.handleGridSort}
+            enableCellSelect={true}
             columns={this._columns}
             rowGetter={this.rowGetter}
             rowsCount={this.state.rows.length}
             minHeight={600}
+            toolbar={<Toolbar enableFilter={true} />}
+            onAddFilter={this.handleFilterChange}
+            onClearFilters={this.onClearFilters}
           />
         </section>
       )
