@@ -86,8 +86,8 @@ class Rankings extends Component {
 
   handleGridSort = (sortColumn, sortDirection) => {
   const comparer = (a, b) => {
-    let intA = Number(a[sortColumn]);
-    let intB = Number(b[sortColumn]);
+    let intA = Number(a[sortColumn]) || 1000;
+    let intB = Number(b[sortColumn]) || 1000;
     if (sortDirection === 'ASC') {
       return (intA > intB) ? 1
                           : (intA < intB)
