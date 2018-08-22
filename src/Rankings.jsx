@@ -9,13 +9,16 @@ class Rankings extends Component {
     this._columns = [{
       name: 'Name',
       key: 'playerName',
-      width: 250
+      width: 250,
+      sortable: true
     }, {
       name: 'Position',
-      key: 'position'
+      key: 'position',
+      sortable: true
     }, {
       name: 'Team',
-      key: 'teamName'
+      key: 'teamName',
+      sortable: true
     }, {
       name: 'Bye',
       key: 'bye',
@@ -86,17 +89,35 @@ class Rankings extends Component {
 
   handleGridSort = (sortColumn, sortDirection) => {
   const comparer = (a, b) => {
-    let intA = Number(a[sortColumn]) || 1000;
-    let intB = Number(b[sortColumn]) || 1000;
-    if (sortDirection === 'ASC') {
-      return (intA > intB) ? 1
-                          : (intA < intB)
-                          ? -1 : 0
-    } else if (sortDirection === 'DESC') {
-      return (intA < intB) ? 1
-                           : (intA > intB)
-                           ? -1 : 0
+    if (a[sortColumn] == Number(a[sortColumn])) {
+      let intA = Number(a[sortColumn]) || 1000;
+      let intB = Number(b[sortColumn]) || 1000;
+      if (sortDirection === 'ASC') {
+        return (intA > intB) ? 1
+                             : (intA < intB)
+                             ? -1
+                             : 0
+      } else if (sortDirection === 'DESC') {
+        return (intA < intB) ? 1
+                             : (intA > intB)
+                             ? -1
+                             : 0
       }
+    } else {
+      let wordA = a[sortColumn];
+      let wordB = b[sortColumn];
+      if (sortDirection === 'ASC') {
+        return (wordA > wordB) ? 1
+                               : (wordA < wordB)
+                               ? -1
+                               : 0
+      } else if (sortDirection === 'DESC') {
+        return (wordA < wordB) ? 1
+                               : (wordA > wordB)
+                               ? -1
+                               : 0
+      }
+    }
     }
     const rows = sortDirection === 'NONE' ? this.state.originalRows.slice(0)
                                           : this.state.rows.sort(comparer)
