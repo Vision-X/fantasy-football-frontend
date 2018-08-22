@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import ReactDataGrid from 'react-data-grid';
+import ReactDataGrid, { utils } from 'react-data-grid';
 const { Toolbar, Data: { Selectors } } = require('react-data-grid-addons');
 // import { Toolbar, Data: { Selectors } } from 'react-data-grid/addons';
+const { getMixedTypeValueRetriever , isImmutableCollection } = utils;
+
 
 class Rankings extends Component {
   constructor() {
@@ -112,20 +114,46 @@ class Rankings extends Component {
 
   }
 
+  // filterRows = (filters, rows = []) => {
+  //   return rows.filter(r => {
+  //     const retriever = getMixeTypeValueRetriever(isImmutableCollection(r));
+  //     let include = true;
+  //     for (let columnKey in filters) {
+  //       if (filters.hasOwnProperty(columnKey)) {
+  //         let colFilter = filters[columnKey];
+  //
+  //         if (colFilter.filterValues && typeof colFilter.filterValues === 'function') {
+  //           include = include & colFilter.filterValues(r, colFilter, columnKey);
+  //         } else if (typeof colFilter.filterTerm === 'string') {
+  //           let rowValue = retriever.getValue(r, columnKey);
+  //           if (rowValue) {
+  //             if (rowValue.toString().toLowerCase().indexOf(colFilter.filterTerm.toLowerCase()) === -1) {
+  //               include = include & false;
+  //             }
+  //           } else {
+  //             include = include & false;
+  //           }
+  //         }
+  //       }
+  //     }
+  //     return Boolean(include);
+  //   })
+  // }
+
   handleGridSort = (sortColumn, sortDirection) => {
-  const comparer = (a, b) => {
-    let intA = Number(a[sortColumn]) || 1000;
-    let intB = Number(b[sortColumn]) || 1000;
-    if (sortDirection === 'ASC') {
-      return (intA > intB) ? 1
-                           : (intA < intB)
-                           ? -1 : 0
-    } else if (sortDirection === 'DESC') {
-      return (intA < intB) ? 1
-                           : (intA > intB)
-                           ? -1 : 0
-      }
-    }
+  // const comparer = (a, b) => {
+  //   let intA = Number(a[sortColumn]) || 1000;
+  //   let intB = Number(b[sortColumn]) || 1000;
+  //   if (sortDirection === 'ASC') {
+  //     return (intA > intB) ? 1
+  //                          : (intA < intB)
+  //                          ? -1 : 0
+  //   } else if (sortDirection === 'DESC') {
+  //     return (intA < intB) ? 1
+  //                          : (intA > intB)
+  //                          ? -1 : 0
+  //     }
+  //   }
     // const rows = sortDirection === 'NONE' ? this.state.originalRows.slice(0)
     //                                       : this.state.rows.sort(comparer)
 
@@ -140,7 +168,9 @@ class Rankings extends Component {
     } else {
       delete newFilters[filter.column.key];
     }
-    this.setState({ filters: newFilters });
+    this.setState({ filters: newFilters }, function() {
+                      console.log(this.state.filters);
+                  });
   }
 
   onClearFilters = () => {
