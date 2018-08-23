@@ -40,10 +40,21 @@ class Rankings extends Component {
       key: 'adp',
       sortable: true
     }];
+    this._headers = {
+        name: "Name",
+        team: "Team",
+        position: "Position",
+        bye: "Bye",
+        bestRank: "Best Rank",
+        worstRank: "Worst Rank",
+        avgRank: "Avg Rank",
+        adp: "ADP"
+    };
     this.fetchRankings();
     let originalRows;
     let rows;
     this.state = { originalRows, rows };
+    this._onClick = this._onClick.bind(this);
   }
 
   ogRows = () => {
@@ -89,7 +100,7 @@ class Rankings extends Component {
 
   handleGridSort = (sortColumn, sortDirection) => {
   const comparer = (a, b) => {
-    if (a[sortColumn] == Number(a[sortColumn])) {
+    if (a[sortColumn] === Number(a[sortColumn])) {
       let intA = Number(a[sortColumn]) || 1000;
       let intB = Number(b[sortColumn]) || 1000;
       if (sortDirection === 'ASC') {
@@ -124,10 +135,74 @@ class Rankings extends Component {
     this.setState({ rows })
   }
 
+
+  convertToCSV = (objArray) => {
+      var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+      var str = '';
+      for (var i = 0; i < array.length; i++) {
+          var line = '';
+          for (var index in array[i]) {
+              if (line != '') line += ','
+              line += array[i][index];
+          }
+          str += line + '\r\n';
+      }
+      return str;
+  }
+
+  exportCSVFile = (headers, items, fileTitle) => {
+      if (headers) {
+          items.unshift(headers);
+      }
+      var jsonObject = JSON.stringify(items);
+      var csv = this.convertToCSV(jsonObject);
+      var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+      var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      if (navigator.msSaveBlob) { // IE 10+
+          navigator.msSaveBlob(blob, exportedFilenmae);
+      } else {
+          var link = document.createElement("a");
+          if (link.download !== undefined) { // feature detection
+              // Browsers that support HTML5 download attribute
+              var url = URL.createObjectURL(blob);
+              link.setAttribute("href", url);
+              link.setAttribute("download", exportedFilenmae);
+              link.style.visibility = 'hidden';
+              document.querySelector('#root').appendChild(link);
+              link.click();
+              document.querySelector('#root').removeChild(link);
+          }
+      }
+  }
+
+  download = () => {
+    var playersNotFormatted = Array.from(this.state.data);
+    var playersFormatted = [];
+    playersNotFormatted.forEach((player) => {
+        playersFormatted.push({
+            name: player.playerName,
+            team: player.teamName || player.playerName.replace(/()/g, '').split(0,2),
+            position: player.position,
+            bye: player.bye,
+            bestRank: player.bestRank,
+            worstRank: player.worstRank,
+            avgRank: player.avgRank,
+            adp: player.adp
+        });
+    });
+    var fileTitle = 'PPR-Rankings-and-ADP';
+    this.exportCSVFile(this._headers , playersFormatted, fileTitle);
+  }
+
+  _onClick = () => {
+    this.download();
+  }
+
   renderWhenFetched = () => {
     if (this.state.data && this.state.rows) {
       return (
         <section>
+
           <ReactDataGrid
             onGridSort={this.handleGridSort}
             columns={this._columns}
@@ -157,6 +232,7 @@ class Rankings extends Component {
     return (
       <Fragment>
         <h2>Player Rankings</h2>
+        <button type="button" onClick={this._onClick}>Download CSV</button>
         {this.renderWhenFetched()}
       </Fragment>
     )
