@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import ReactDataGrid from 'react-data-grid';
 // import ReactDataGridPlugins from 'react-data-grid/addons';
 
-
 class Rankings extends Component {
   constructor() {
     super();
@@ -128,7 +127,7 @@ class Rankings extends Component {
                                ? -1
                                : 0
       }
-    }
+      }
     }
     const rows = sortDirection === 'NONE' ? this.state.originalRows.slice(0)
                                           : this.state.rows.sort(comparer)
@@ -223,12 +222,7 @@ class Rankings extends Component {
     }
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
-
     return (
       <Fragment>
         <h2>Player Rankings</h2>
