@@ -3,11 +3,49 @@
 }
 
 button {
+  background-color: steelblue;
   border: none;
   border-radius: none;
-  background-color: steelblue;
+  box-shadow: 1px 1px 8px white;
   color: white;
   font-size: 1rem;
+  outline: 2px solid black;
   padding: 0.6rem;
-  float: right;
+  height: 50px;
+}
+
+button:hover {
+  background-color: black;
+  outline: 2px solid white;
+}
+
+header {
+  align-items: center;
+  background-image: linear-gradient(to right top, #121baf, #291e8e, #2f216f, #2f2251, #292335);
+  display: flex;
+  justify-content: space-around;
+  height: 15vh;
+}
+
+header h2 {
+  color: white;
+  font-size: 2.0rem;
+}
+
+header p {
+  color: white;
+}
+
+.bobby {
+  background-image: url('./bobbysippio.jpg');
+  background-position: center;
+  background-size: contain;
+  box-shadow: 2px 2px 20px steelblue;
+  outline: 1px solid black;
+  height: 80px;
+  width: 80px;
+}
+
+.react-grid-Row--even>* {
+  background-color: lightgray !important;
 }

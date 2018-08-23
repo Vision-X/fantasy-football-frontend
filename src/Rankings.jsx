@@ -99,7 +99,7 @@ class Rankings extends Component {
 
   handleGridSort = (sortColumn, sortDirection) => {
   const comparer = (a, b) => {
-    if (a[sortColumn] === Number(a[sortColumn])) {
+    if (a[sortColumn] == Number(a[sortColumn])) {
       let intA = Number(a[sortColumn]) || 1000;
       let intB = Number(b[sortColumn]) || 1000;
       if (sortDirection === 'ASC') {
@@ -200,8 +200,7 @@ class Rankings extends Component {
   renderWhenFetched = () => {
     if (this.state.data && this.state.rows) {
       return (
-        <section>
-
+        <section className="rankings-section">
           <ReactDataGrid
             onGridSort={this.handleGridSort}
             columns={this._columns}
@@ -225,8 +224,14 @@ class Rankings extends Component {
   render() {
     return (
       <Fragment>
-        <h2>Player Rankings</h2>
-        <button type="button" onClick={this._onClick}>Download CSV</button>
+        <header>
+          <div className="bobby"></div>
+          <div>
+            <h2>Player Rankings</h2>
+            <p>Full PPR</p>
+          </div>
+          <button type="button" onClick={this._onClick}>Download CSV</button>
+        </header>
         {this.renderWhenFetched()}
       </Fragment>
     )
