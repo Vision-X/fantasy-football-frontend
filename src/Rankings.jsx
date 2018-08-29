@@ -82,6 +82,9 @@ class Rankings extends Component {
       rows.push({
         playerName: player.playerName,
         teamName: player.teamName,
+        // alternate team name for Defenses, test first
+        // || player.playerName.slice(player.playerName.length -4,
+        //player.playerName.length -2),
         position: player.position,
         bye: player.bye,
         bestRank: player.bestRank,
