@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import ReactDataGrid from 'react-data-grid';
-// import ReactDataGridPlugins from 'react-data-grid/addons';
 
 class Rankings extends Component {
   constructor() {
