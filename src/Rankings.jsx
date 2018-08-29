@@ -55,6 +55,17 @@ class Rankings extends Component {
     this._onClick = this._onClick.bind(this);
   }
 
+  fetchRankings = () => {
+    let dataGetter = response => {
+      this.setState({ data: response[0] }, this.makeRows)
+    }
+    let url = 'https://fantasy-football-api.firebaseapp.com/rankings.json';
+    return fetch(url)
+    .then(response => response.json())
+    .then(dataGetter)
+    .catch(console.log("nopeeeee"))
+  }
+
   ogRows = () => {
     this.setState({ rows: this.state.originalRows.slice(0) });
   }
@@ -63,16 +74,6 @@ class Rankings extends Component {
     this.setState({ originalRows: this.createRows(200) }, this.ogRows);
   }
 
-  fetchRankings = () => {
-    let dataGetter = response => {
-      this.setState({ data: response[0] }, this.makeRows)
-  }
-    let url = 'https://fantasy-football-api.firebaseapp.com/rankings.json';
-    return fetch(url)
-           .then(response => response.json())
-           .then(dataGetter)
-           .catch(console.log("nopeeeee"))
-  }
 
   createRows = () => {
     let rows = [];
