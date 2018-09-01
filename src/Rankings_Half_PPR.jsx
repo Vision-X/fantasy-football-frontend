@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import ReactDataGrid from 'react-data-grid';
 
 class Rankings_Half_PPR extends Component {
@@ -231,6 +232,13 @@ class Rankings_Half_PPR extends Component {
             <p>Half PPR</p>
           </div>
           <button type="button" onClick={this._onClick}>Download CSV</button>
+          <nav>
+            <ul>
+              <li><Link to='/'>Home</Link></li>
+              <li><Link to='/Rankings'>PPR Rankings</Link></li>
+              <li><Link to='/DfsPortal'>DFS Portal</Link></li>
+            </ul>
+          </nav>
         </header>
         {this.renderWhenFetched()}
       </Fragment>

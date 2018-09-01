@@ -8,18 +8,20 @@ class App extends Component {
     return (
       <Fragment>
         <header>
+          <div className="bobby"></div>
           <h1>Fantasy Football Tools</h1>
           <nav>
             <ul>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/Rankings'>Rankings</Link></li>
+              <li><Link to='/Rankings'>PPR Rankings</Link></li>
               <li><Link to='/rankings-half-ppr'>Half-PPR Rankings</Link></li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>
             </ul>
           </nav>
         </header>
-        <section>
+        <section className="app-section">
           <h2>We did it!</h2>
+          <br />
+          <h2>...We're doing it again</h2>
         </section>
       </Fragment>
     );
