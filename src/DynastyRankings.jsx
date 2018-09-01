@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import ReactDataGrid from 'react-data-grid';
 
-class DynatsyRankings extends Component {
+class DynastyRankings extends Component {
   constructor() {
     super();
     this._columns = [{
@@ -60,7 +60,7 @@ class DynatsyRankings extends Component {
     let dataGetter = response => {
       this.setState({ data: response[0] }, this.makeRows)
     }
-    let url = 'https://fantasy-football-api.firebaseapp.com/dynastyrankings.json';
+    let url = 'https://fantasy-football-api.firebaseapp.com/dynastyRankings.json';
     return fetch(url)
     .then(response => response.json())
     .then(dataGetter)
@@ -92,7 +92,7 @@ class DynatsyRankings extends Component {
         bestRank: player.bestRank,
         worstRank: player.worstRank,
         avgRank: player.avgRank,
-        adp: player.stdDev
+        stdDev: player.stdDev
       })
   }
   return rows;
@@ -232,13 +232,14 @@ class DynatsyRankings extends Component {
         <header>
           <div className="bobby"></div>
           <div>
-            <h2>Player Rankings</h2>
+            <h2>Dynasty Player Rankings</h2>
             <p>Full PPR</p>
           </div>
           <button type="button" onClick={this._onClick}>Download CSV</button>
           <nav>
             <ul>
               <li><Link to='/'>Home</Link></li>
+              <li><Link to='/rankings'>PPR Rankings</Link></li>
               <li><Link to='/rankings-half-ppr'>Half-PPR Rankings</Link></li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>
             </ul>

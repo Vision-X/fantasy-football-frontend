@@ -236,6 +236,7 @@ class Rankings_Half_PPR extends Component {
             <ul>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/Rankings'>PPR Rankings</Link></li>
+              <li><Link to='/dynastyrankings'>Dynasty Rankings</Link></li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>
             </ul>
           </nav>

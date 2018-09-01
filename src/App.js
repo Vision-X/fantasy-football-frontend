@@ -14,8 +14,8 @@ class App extends Component {
             <ul>
               <li><Link to='/Rankings'>PPR Rankings</Link></li>
               <li><Link to='/rankings-half-ppr'>Half-PPR Rankings</Link></li>
+              <li><Link to='/dynastyrankings'>Dynasty Rankings</Link></li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>
-              <li><Link to='/dynastyrankings'>DFS Portal</Link></li>
             </ul>
           </nav>
         </header>
