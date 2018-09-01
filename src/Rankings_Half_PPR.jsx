@@ -59,7 +59,7 @@ class Rankings_Half_PPR extends Component {
     let dataGetter = response => {
       this.setState({ data: response[0] }, this.makeRows)
     }
-    let url = 'https://fantasy-football-api.firebaseapp.com/rankings.json';
+    let url = "https://fantasy-football-api.firebaseapp.com/hprankings.json";
     return fetch(url)
     .then(response => response.json())
     .then(dataGetter)

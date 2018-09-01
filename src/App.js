@@ -13,7 +13,7 @@ class App extends Component {
             <ul>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/Rankings'>Rankings</Link></li>
-              <li><Link to='/Rankings-half-ppr'/></li>
+              <li><Link to='/Rankings?half-ppr'/></li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>
             </ul>
           </nav>
