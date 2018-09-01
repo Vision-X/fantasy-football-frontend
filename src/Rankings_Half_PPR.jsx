@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import ReactDataGrid from 'react-data-grid';
 
-class Rankings extends Component {
+class Rankings_Half_PPR extends Component {
   constructor() {
     super();
     this._columns = [{
@@ -59,7 +59,7 @@ class Rankings extends Component {
     let dataGetter = response => {
       this.setState({ data: response[0] }, this.makeRows)
     }
-    let url = 'https://fantasy-football-api.firebaseapp.com/rankings.json';
+    let url = "https://fantasy-football-api.firebaseapp.com/hprankings.json";
     return fetch(url)
     .then(response => response.json())
     .then(dataGetter)
@@ -82,9 +82,6 @@ class Rankings extends Component {
       rows.push({
         playerName: player.playerName,
         teamName: player.teamName,
-        // alternate team name for Defenses, test first
-        // || player.playerName.slice(player.playerName.length -4,
-        //player.playerName.length -2),
         position: player.position,
         bye: player.bye,
         bestRank: player.bestRank,
@@ -192,7 +189,7 @@ class Rankings extends Component {
             adp: player.adp
         });
     });
-    var fileTitle = 'PPR-Rankings-and-ADP';
+    var fileTitle = 'Half-PPR-Rankings-and-ADP';
     this.exportCSVFile(this._headers , playersFormatted, fileTitle);
   }
 
@@ -231,7 +228,7 @@ class Rankings extends Component {
           <div className="bobby"></div>
           <div>
             <h2>Player Rankings</h2>
-            <p>Full PPR</p>
+            <p>Half PPR</p>
           </div>
           <button type="button" onClick={this._onClick}>Download CSV</button>
         </header>
@@ -241,4 +238,4 @@ class Rankings extends Component {
   }
 }
 
-export default Rankings;
+export default Rankings_Half_PPR;
