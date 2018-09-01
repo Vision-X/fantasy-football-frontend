@@ -21,7 +21,10 @@ button:hover {
 
 header {
   align-items: center;
-  background-image: linear-gradient(to right top, #121baf, #291e8e, #2f216f, #2f2251, #292335);
+  /* background-image: linear-gradient(to right top, #121baf, #291e8e, #2f216f, #2f2251, #292335); */
+  background-image: -webkit-linear-gradient(bottom left, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-image: -o-linear-gradient(bottom left, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-image: linear-gradient(to top right, #051937, #004d7a, #008793, #00bf72, #a8eb12);
   display: flex;
   justify-content: space-around;
   height: 15vh;
