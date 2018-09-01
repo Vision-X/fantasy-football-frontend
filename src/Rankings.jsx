@@ -238,6 +238,7 @@ class Rankings extends Component {
           <nav>
             <ul>
               <li><Link to='/'>Home</Link></li>
+              <li>PPR Rankings</li>
               <li><Link to='/rankings-half-ppr'>Half-PPR Rankings</Link></li>
               <li><Link to='/dynastyrankings'>Dynasty Rankings</Link></li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>

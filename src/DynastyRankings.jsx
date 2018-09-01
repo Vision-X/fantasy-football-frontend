@@ -241,6 +241,7 @@ class DynastyRankings extends Component {
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/rankings'>PPR Rankings</Link></li>
               <li><Link to='/rankings-half-ppr'>Half-PPR Rankings</Link></li>
+              <li>Dynasty Rankings</li>
               <li><Link to='/DfsPortal'>DFS Portal</Link></li>
             </ul>
           </nav>

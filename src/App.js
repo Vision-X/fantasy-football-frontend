@@ -12,6 +12,7 @@ class App extends Component {
           <h1>Fantasy Football Tools</h1>
           <nav>
             <ul>
+              <li>Home</li>
               <li><Link to='/Rankings'>PPR Rankings</Link></li>
               <li><Link to='/rankings-half-ppr'>Half-PPR Rankings</Link></li>
               <li><Link to='/dynastyrankings'>Dynasty Rankings</Link></li>
