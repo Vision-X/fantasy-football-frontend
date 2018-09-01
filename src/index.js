@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Rankings from './Rankings';
-import Rankings_Half_PPR form './Rankings_Half_PPR';
+import Rankings_Half_PPR from './Rankings_Half_PPR';
 import DfsPortal from './DfsPortal';
 import registerServiceWorker from './registerServiceWorker';
 
