@@ -194,7 +194,7 @@ class DynastyRankings extends Component {
             adp: player.adp
         });
     });
-    var fileTitle = 'PPR-Rankings-and-ADP';
+    var fileTitle = 'Dynasty-Rankings';
     this.exportCSVFile(this._headers , playersFormatted, fileTitle);
   }
 
