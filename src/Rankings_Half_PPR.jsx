@@ -64,7 +64,7 @@ class Rankings_Half_PPR extends Component {
     return fetch(url)
     .then(response => response.json())
     .then(dataGetter)
-    .catch(console.log("nopeeeee"))
+    .catch(console.log("no errors"))
   }
 
   ogRows = () => {
