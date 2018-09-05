@@ -82,10 +82,7 @@ class Rankings extends Component {
       let player = this.state.data[i];
       rows.push({
         playerName: player.playerName,
-        teamName: player.teamName,
-        // alternate team name for Defenses, test first
-        // || player.playerName.slice(player.playerName.length -4,
-        //player.playerName.length -2),
+        teamName: player.teamName || player.playerName.replace(/\(|\)/g, "").substr(player.playerName.length - 5).toUpperCase(),
         position: player.position,
         bye: player.bye,
         bestRank: player.bestRank,
@@ -184,7 +181,7 @@ class Rankings extends Component {
     playersNotFormatted.forEach((player) => {
         playersFormatted.push({
             name: player.playerName,
-            team: player.teamName || player.playerName.replace(/()/g, '').split(0,2),
+            team: player.teamName,
             position: player.position,
             bye: player.bye,
             bestRank: player.bestRank,
