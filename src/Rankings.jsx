@@ -82,7 +82,10 @@ class Rankings extends Component {
       let player = this.state.data[i];
       rows.push({
         playerName: player.playerName,
-        teamName: player.teamName || player.playerName.replace(/\(|\)/g, "").substr(player.playerName.length - 5).toUpperCase(),
+        teamName: player.teamName ||
+                  player.playerName.replace(/\(|\)/g, "")
+                                   .substr(player.playerName.length - 5)
+                                   .toUpperCase(),
         position: player.position,
         bye: player.bye,
         bestRank: player.bestRank,
